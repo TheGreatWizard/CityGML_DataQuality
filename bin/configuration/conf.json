@@ -1,0 +1,9 @@
+{
+  "PGBIN": "C:/Program Files/PostgreSQL/12/bin",
+  "PGHOST": "localhost",
+  "PGPORT": "5432",
+  "PGUSER": "postgres",
+  "PGPASSWORD": "Aa123456",
+  "citygml_tools": "C:/Users/banan/PycharmProjects/ConvertToCityGML/citygml-tools-1.3.2/bin/citygml-tools.bat",
+  "citydb_script": "C:/bin/3DCityDB-Importer-Exporter/lib/impexp-client-4.2.3.jar"
+}
