@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!-- Created with Liquid Studio 2020 (https://www.liquid-technologies.com) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:app="http://www.opengis.net/citygml/appearance/2.0"
+           xmlns:grp="http://www.opengis.net/citygml/cityobjectgroup/2.0"
+           xmlns:core="http://www.opengis.net/citygml/2.0"
+           xmlns:bldg="http://www.opengis.net/citygml/building/2.0"
+           xmlns:gml="http://www.opengis.net/gml" 
+           xmlns="http://www.opengis.net/citygml/quality/2.0"
+           targetNamespace="http://www.opengis.net/citygml/quality/2.0"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.opengis.net/citygml/2.0" schemaLocation="http://schemas.opengis.net/citygml/2.0/cityGMLBase.xsd" />
+    <xs:import namespace="http://www.opengis.net/citygml/building/2.0" schemaLocation="http://schemas.opengis.net/citygml/building/2.0/building.xsd" />
+    <xs:import namespace="http://www.opengis.net/citygml/generics/2.0"  schemaLocation="http://schemas.opengis.net/citygml/generics/2.0/generics.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/appearance/2.0"  schemaLocation="http://schemas.opengis.net/citygml/appearance/2.0/appearance.xsd"/>
+    <xs:import namespace="http://www.opengis.net/citygml/cityobjectgroup/2.0"  schemaLocation="http://schemas.opengis.net/citygml/cityobjectgroup/2.0/cityObjectGroup.xsd"/>
+    <xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd" />
+
+    <!--=========================================================================================-->
+    <!--PositionalQuality-->
+    <!--=========================================================================================-->
+   
+
+    <xs:simpleType name="listOfDoubles">
+        <xs:list itemType='xs:decimal'/>
+    </xs:simpleType>
+
+    <xs:simpleType name='VarianceMatrixType'>
+        <xs:restriction base='listOfDoubles'>
+            <xs:length value='6'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="form1Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="lod0FootPrint"/>
+            <xs:enumeration value="lod0RoofEdge"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Form1PositionalQualityType">
+        <xs:sequence>
+            <xs:element name="target" type='form1Type' minOccurs="0"/>
+            <xs:element name="CE90" minOccurs="0"/>
+            <xs:element name="LE90" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="form2Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="lod0FootPrint"/>
+            <xs:enumeration value="lod0RoofEdge"/>
+            <xs:enumeration value="lod1Solid"/>
+            <xs:enumeration value="lod1MultiSurface"/>
+            <xs:enumeration value="lod1TerrainIntersection"/>
+            <xs:enumeration value="lod2Solid"/>
+            <xs:enumeration value="lod2MultiSurface"/>
+            <xs:enumeration value="lod2MultiCurve"/>
+            <xs:enumeration value="lod2TerrainIntersection"/>
+            <xs:enumeration value="lod3Solid"/>
+            <xs:enumeration value="lod3MultiSurface"/>
+            <xs:enumeration value="lod3MultiCurve"/>
+            <xs:enumeration value="lod3TerrainIntersection"/>
+            <xs:enumeration value="lod4Solid"/>
+            <xs:enumeration value="lod4MultiSurface"/>
+            <xs:enumeration value="lod4MultiCurve"/>
+            <xs:enumeration value="lod4TerrainIntersection"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Form2PositionalQualityType">
+        <xs:sequence>
+            <xs:element name="target" type='form2Type' minOccurs="0"/>
+            <xs:element name="SE90" type='xs:decimal' minOccurs="0"/>
+            <xs:element name="LE90" type='xs:decimal' minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+       
+    <xs:element name="form1PositionalQuality" type="Form1PositionalQualityType" substitutionGroup="core:_GenericApplicationPropertyOfCityObject" />
+    <xs:element name="form2PositionalQuality" type="Form2PositionalQualityType" substitutionGroup="core:_GenericApplicationPropertyOfCityObject" />
+
+    <xs:complexType name="Form3PositionalQuality">
+        <xs:sequence>
+            <xs:element name="targetSurface" type="xs:string" minOccurs="1"/>
+            <xs:element name="position" type="VarianceMatrixType" minOccurs="0"/>
+            <xs:element name="azimuth_LE90" type='xs:decimal' minOccurs="0"/>
+            <xs:element name="elevation_LE90" type='xs:decimal' minOccurs="0"/>
+            <xs:element name="texture_CE90" type='xs:decimal' minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name='VarianceMatricesListType'>
+        <xs:sequence>
+            <xs:element name="position" type="VarianceMatrixType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="Form4PositionalQuality">
+        <xs:sequence>
+            <xs:element name="targetLineString" type="xs:string" minOccurs="1"/>
+            <xs:element name="positionAccuracy" type="VarianceMatricesListType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--=========================================================================================-->
+    <!--VisualQuality-->
+    <!--=========================================================================================-->
+    <xs:complexType name="Form1VisualQuality">
+        <xs:sequence>
+            <xs:element name="textureType" type='xs:boolean' minOccurs="0"/>
+            <xs:element name="resolution"  type='xs:decimal' minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Form2VisualQuality">
+        <xs:sequence>
+            <xs:element name="propriety" type='xs:boolean' minOccurs="0"/>
+            <xs:element name="occlusion" type='xs:boolean' minOccurs="0"/>
+            <xs:element name="distanceToCamera" type='xs:decimal' minOccurs="0"/>
+            <xs:element name="verticality" type='xs:decimal' minOccurs="0"/>
+            <xs:element name="resolution" type='xs:decimal' minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--=========================================================================================-->
+    <!--Semantic reliability-->
+    <!--=========================================================================================-->
+    <xs:element name="reliability" type="core:doubleBetween0and1" substitutionGroup="core:_GenericApplicationPropertyOfCityObject" />
+
+    <xs:complexType name="PropertyReliability">
+        <xs:sequence>
+            <xs:element name="propertyName" minOccurs="1"/>
+            <xs:element name="reliability" type='core:doubleBetween0and1' minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="propertyReliability" type="PropertyReliability" substitutionGroup="core:_GenericApplicationPropertyOfCityObject" />
+
+    <!--=========================================================================================-->
+    <!--Completeness-->
+    <!--=========================================================================================-->
+
+    <xs:complexType name="Completeness">
+        <xs:sequence>
+            <xs:element name="existence" type='xs:boolean' minOccurs="0"/>
+            <xs:element name="completness" type='core:doubleBetween0and1' minOccurs="0"/>
+            <xs:element name="lod0" type='core:doubleBetween0and1' minOccurs="0"/>
+            <xs:element name="lod1" type='core:doubleBetween0and1' minOccurs="0"/>
+            <xs:element name="lod2" type='core:doubleBetween0and1' minOccurs="0"/>
+            <xs:element name="lod3" type='xs:decimal' minOccurs="0"/>
+            <xs:element name="lod4" type='xs:decimal' minOccurs="0"/>
+            <xs:element name="mesh" type='xs:decimal' minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--=========================================================================================-->
+    <!-- Temporal reliability -->
+    <!--=========================================================================================-->
+
+    <xs:complexType name="TemporalReliability">
+        <xs:sequence>
+            <xs:element name="measureDate" type='xs:date' minOccurs="0"/>
+            <xs:element name="measureTime" type='xs:time' minOccurs="0"/>
+            <xs:element name="transience" type='xs:decimal' minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>

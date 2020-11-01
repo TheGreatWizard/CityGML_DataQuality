@@ -186,12 +186,12 @@ class Main:
                               user=self.conf_data['PGUSER'],
                               password=self.conf_data['PGPASSWORD']) as conn:
             with conn.cursor() as cur:
-                conn.autocommit = True  # Explains why we do this - we cannot drop or create from within a DB transaction. http://initd.org/psycopg/docs/connection.html#connection.autocommit
+                conn.autocommit = True
                 cur.execute(sql)
 
                 row = cur.fetchone()
                 while row is not None:
                     with open(geojson, 'w') as f:
                         json.dump(row[0], f)
-                    print(row)
+                    # print(row)
                     break
