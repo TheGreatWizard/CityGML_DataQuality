@@ -75,10 +75,7 @@
             <xs:element name="LE90" type='xs:decimal' minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
-       
-    <xs:element name="form1PositionalQuality" type="Form1PositionalQualityType" substitutionGroup="core:_GenericApplicationPropertyOfCityObject" />
-    <xs:element name="form2PositionalQuality" type="Form2PositionalQualityType" substitutionGroup="core:_GenericApplicationPropertyOfCityObject" />
-
+   
     <xs:complexType name="Form3PositionalQuality">
         <xs:sequence>
             <xs:element name="targetSurface" type="xs:string" minOccurs="1"/>
@@ -98,9 +95,29 @@
     <xs:complexType name="Form4PositionalQuality">
         <xs:sequence>
             <xs:element name="targetLineString" type="xs:string" minOccurs="1"/>
-            <xs:element name="positionAccuracy" type="VarianceMatricesListType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="positionAccuracy" type="gml:LineStringType" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:complexType name='SimplePositionalQuality'>
+        <xs:sequence>
+            <xs:element name="form1" type="Form1PositionalQualityType"  minOccurs="0" maxOccurs="1" />
+            <xs:element name="form2" type="Form2PositionalQualityType"  minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name='PositionalQuality'>
+        <xs:sequence>
+            <xs:element name="form1" type="Form1PositionalQualityType"  minOccurs="0" maxOccurs="1" />
+            <xs:element name="form2" type="Form2PositionalQualityType"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="form3" type="Form3PositionalQuality" minOccurs="0"/>
+            <xs:element name="form4" type="Form4PositionalQuality" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="positionalQuality" type="PositionalQuality" substitutionGroup="core:_GenericApplicationPropertyOfCityObject" />
+
+
     <!--=========================================================================================-->
     <!--VisualQuality-->
     <!--=========================================================================================-->
@@ -120,11 +137,14 @@
             <xs:element name="resolution" type='xs:decimal' minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:element name="visualQuality" type="Form1VisualQuality" substitutionGroup="core:_GenericApplicationPropertyOfCityObject" />
+
     <!--=========================================================================================-->
     <!--Semantic reliability-->
     <!--=========================================================================================-->
     <xs:element name="reliability" type="core:doubleBetween0and1" substitutionGroup="core:_GenericApplicationPropertyOfCityObject" />
-
+    
     <xs:complexType name="PropertyReliability">
         <xs:sequence>
             <xs:element name="propertyName" minOccurs="1"/>
@@ -137,7 +157,7 @@
     <!--Completeness-->
     <!--=========================================================================================-->
 
-    <xs:complexType name="Completeness">
+    <xs:complexType name="CompletenessType">
         <xs:sequence>
             <xs:element name="existence" type='xs:boolean' minOccurs="0"/>
             <xs:element name="completness" type='core:doubleBetween0and1' minOccurs="0"/>
@@ -162,5 +182,23 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:element name="temporalReliability" type="TemporalReliability" substitutionGroup="core:_GenericApplicationPropertyOfCityObject" />
 
+    <xs:complexType name="zoneType">
+        <xs:complexContent>
+            <xs:extension base="gml:AbstractFeatureType">
+                <xs:sequence>
+                    <xs:element name="boundary" type='gml:PolygonType' minOccurs="1"/>
+                    <xs:element name="temporalReliability" type="TemporalReliability" minOccurs="0"/>
+                    <xs:element name="positionalQuality" type="SimplePositionalQuality" minOccurs="0"/>
+                    <xs:element name="module" type='xs:string' minOccurs="0"/>
+                    <xs:element name="completeness" type='CompletenessType' minOccurs="0"/>
+                    <xs:element name="realistic_texture" type='core:doubleBetween0and1' minOccurs="0"/>
+                    <xs:element name="texture_resolution" type='xs:decimal' minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="zone" type="zoneType" substitutionGroup="gml:_Feature"/>   
 </xs:schema>

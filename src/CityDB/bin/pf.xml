@@ -10,11 +10,11 @@
         </referenceSystems>
         <connections>
             <connection id="UUID_cf900b8f-8ca7-41ba-b88c-579b1d41d8d5" loginTimeout="60" initialSize="0">
-                <description>test_extended</description>
+                <description>delme001</description>
                 <type>PostGIS</type>
                 <server>localhost</server>
                 <port>5432</port>
-                <sid>test_extended</sid>
+                <sid>delme001</sid>
                 <user>postgres</user>
                 <password>Aa123456</password>
                 <savePassword>true</savePassword>

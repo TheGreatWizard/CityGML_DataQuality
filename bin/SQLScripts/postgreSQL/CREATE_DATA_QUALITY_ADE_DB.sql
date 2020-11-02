@@ -1,5 +1,5 @@
 
-drop sequence citydb.zones_seq cascade;
+drop sequence if exists citydb.zones_seq cascade;
 create sequence citydb.zones_seq
     increment 1
     start 1

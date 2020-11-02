@@ -20,6 +20,7 @@ class Main:
             cf.write("set PGHOST=" + self.conf_data['PGHOST'] + "\n")
             cf.write("set PGUSER=" + self.conf_data['PGUSER'] + "\n")
             cf.write("set PGPASSWORD=" + self.conf_data['PGPASSWORD'] + "\n")
+            cf.write("set CITYDBROOT=" + self.conf_data['citydb_root'] + "\n")
 
     def GMLtoJSON(self, name):
         process = subprocess.Popen([self.conf_data['citygml_tools'], 'to-cityjson', name],
@@ -57,6 +58,8 @@ class Main:
         process.stdin.close()
         # Fetch output
         for line in process.stdout:
+            print(line.strip())
+        for line in process.stderr:
             print(line.strip())
         # process.kill()
         process.wait()

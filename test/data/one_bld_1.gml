@@ -21,7 +21,7 @@ xsi:schemaLocation="http://www.opengis.net/citygml/cityobjectgroup/2.0 http://sc
            http://www.opengis.net/citygml/transportation/2.0 http://schemas.opengis.net/citygml/transportation/2.0/transportation.xsd 
            http://www.opengis.net/citygml/relief/2.0 http://schemas.opengis.net/citygml/relief/2.0/relief.xsd 
            http://www.opengis.net/citygml/landuse/2.0 http://schemas.opengis.net/citygml/landuse/2.0/landUse.xsd
-           http://www.opengis.net/citygml/quality/2.0 file:///C:/Users/banan/PycharmProjects/CityGML_DataQuality/bin/schemes/DataQualityS.xsd
+           http://www.opengis.net/citygml/quality/2.0 file:///C:/Users/banan/PycharmProjects/CityGML_DataQuality/bin/schemes/DataQuality.xsd
            http://www.opengis.net/citygml/2.0 http://schemas.opengis.net/citygml/2.0/cityGMLBase.xsd
            http://www.opengis.net/gml http://schemas.opengis.net/gml/3.1.1/base/gml.xsd">
     <gml:boundedBy>
@@ -31,13 +31,76 @@ xsi:schemaLocation="http://www.opengis.net/citygml/cityobjectgroup/2.0 http://sc
         </gml:Envelope>
     </gml:boundedBy>
     <cityObjectMember>
+        <qlt:zone>
+            <qlt:boundary>
+                <gml:exterior>
+                    <gml:LinearRing>
+                        <gml:posList srsDimension="2">
+                            389776.190984136 5817595.96105962
+                            389777.022237079 5817590.98840217
+                            389781.96938449 5817591.81532901 
+                            389776.190984136 5817595.96105962
+                        </gml:posList>
+                    </gml:LinearRing>
+                </gml:exterior>
+            </qlt:boundary>
+            <qlt:module>Buildings</qlt:module>
+            <qlt:completeness>
+                <qlt:existence>true</qlt:existence>
+                <qlt:completness>0.9</qlt:completness>
+                <qlt:lod0>0</qlt:lod0>
+                <qlt:lod1>0</qlt:lod1>
+                <qlt:lod2>1</qlt:lod2>
+                <qlt:lod3>0</qlt:lod3>
+                <qlt:lod4>0</qlt:lod4>
+                <qlt:mesh>0</qlt:mesh>
+            </qlt:completeness>
+        </qlt:zone>
+    </cityObjectMember>
+    <cityObjectMember>
         <bldg:Building gml:id="UUID_265e639d-fda7-11ea-a55a-00d861e16b8d">
-            <qlt:reliability>0.8</qlt:reliability>
-            <form1PositionalQuality>
-                <qlt:target>lod0FootPrint</qlt:target>
+            <qlt:reliability>0.99</qlt:reliability>
+            <qlt:positionalQuality>
+                <qlt:form1>
+                    <qlt:target>lod0FootPrint</qlt:target>
                     <qlt:CE90>1.5</qlt:CE90>
-                        <qlt:LE90>1.5</qlt:LE90>
-            </form1PositionalQuality>
+                    <qlt:LE90>1.5</qlt:LE90>
+                </qlt:form1>
+                <qlt:form2>
+                    <qlt:target>lod2MultiSurface</qlt:target>
+                    <qlt:SE90>1.5</qlt:SE90>
+                    <qlt:LE90>1.5</qlt:LE90>
+                </qlt:form2>
+                <qlt:form3>
+                    <qlt:targetSurface>GEOM_7300027</qlt:targetSurface>
+                    <qlt:position>1.5 1.5 1.5 0.1 0.1 0.01</qlt:position>
+                    <qlt:azimuth_LE90>1.1</qlt:azimuth_LE90>
+                    <qlt:elevation_LE90>0.8</qlt:elevation_LE90>
+                    <qlt:texture_CE90>0.2</qlt:texture_CE90>
+                </qlt:form3>
+                <qlt:form4>
+                    <qlt:targetLineString>GEOM_7300027_0_</qlt:targetLineString>
+                    <qlt:positionAccuracy>
+                        <gml:posList srsDimension="6">
+                            1.5 1.5 1.5 0.1 0.1 0.01
+                            1.5 1.5 1.5 0.1 0.1 0.01
+                            1.5 1.5 1.5 0.1 0.1 0.01
+                            1.5 1.5 1.5 0.1 0.1 0.01
+                            1.5 1.5 1.5 0.1 0.1 0.01
+                        </gml:posList>
+                    </qlt:positionAccuracy>
+                </qlt:form4>
+            </qlt:positionalQuality>
+            <qlt:visualQuality>
+                <qlt:textureType>false</qlt:textureType>
+                <qlt:resolution>0.45</qlt:resolution>
+            </qlt:visualQuality>
+            <qlt:temporalReliability>
+                <qlt:measureDate>2017-10-22</qlt:measureDate>
+                <qlt:measureTime>10:33:00</qlt:measureTime>
+                <qlt:transience>100</qlt:transience>
+            </qlt:temporalReliability>
+            
             <bldg:boundedBy>
                 <bldg:GroundSurface gml:id="UUID_9c9e3d81-60f3-45bb-b1f9-0509e1e3e409">
                     <creationDate>2014-07-09</creationDate>
@@ -64,7 +127,14 @@ xsi:schemaLocation="http://www.opengis.net/citygml/cityobjectgroup/2.0 http://sc
             </bldg:boundedBy>
             <bldg:boundedBy>
                 <bldg:RoofSurface gml:id="UUID_af75e832-330c-46dc-bafc-e764d559c9ee">
-                    <creationDate>2014-07-09</creationDate>
+                    <qlt:propertyReliability>
+                        <qlt:propertyName>Material</qlt:propertyName>
+                        <qlt:reliability>0.8</qlt:reliability>
+                    </qlt:propertyReliability>
+                    <gen:stringAttribute name="Material">
+                        <gen:value>Clay</gen:value>
+                    </gen:stringAttribute>
+                    
                     <bldg:lod2MultiSurface>
                         <gml:MultiSurface gml:id="UUID_230bca4f-c1e9-41f3-a66c-69bd877571ae">
                             <gml:surfaceMember>
