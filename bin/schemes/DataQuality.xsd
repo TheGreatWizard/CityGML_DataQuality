@@ -160,7 +160,7 @@
     <xs:complexType name="CompletenessType">
         <xs:sequence>
             <xs:element name="existence" type='xs:boolean' minOccurs="0"/>
-            <xs:element name="completness" type='core:doubleBetween0and1' minOccurs="0"/>
+            <xs:element name="completeness" type='core:doubleBetween0and1' minOccurs="0"/>
             <xs:element name="lod0" type='core:doubleBetween0and1' minOccurs="0"/>
             <xs:element name="lod1" type='core:doubleBetween0and1' minOccurs="0"/>
             <xs:element name="lod2" type='core:doubleBetween0and1' minOccurs="0"/>
@@ -195,6 +195,7 @@
                     <xs:element name="completeness" type='CompletenessType' minOccurs="0"/>
                     <xs:element name="realistic_texture" type='core:doubleBetween0and1' minOccurs="0"/>
                     <xs:element name="texture_resolution" type='xs:decimal' minOccurs="0"/>
+
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>

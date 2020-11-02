@@ -149,6 +149,15 @@ class Main:
         process.kill()
         process.wait()
 
+    def generalInsert(self, db_name, sql, values):
+        with psycopg2.connect(host=self.conf_data['PGHOST'],
+                              database=db_name,
+                              user=self.conf_data['PGUSER'],
+                              password=self.conf_data['PGPASSWORD']) as conn:
+            with conn.cursor() as cur:
+                conn.autocommit = True
+                cur.execute(sql, values)
+
     def generalQuery(self, db_name, sql):
         with psycopg2.connect(host=self.conf_data['PGHOST'],
                               database=db_name,

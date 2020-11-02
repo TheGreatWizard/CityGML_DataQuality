@@ -1,4 +1,5 @@
 /.idea
 /venv
+/dev
 /CityDB/bin/pf.xml
 /bin/ShellScripts/CONNECTION_DETAILS.bat

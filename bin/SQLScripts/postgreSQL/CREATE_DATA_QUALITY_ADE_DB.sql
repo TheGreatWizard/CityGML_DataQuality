@@ -16,18 +16,21 @@ create table zones (
    zone geometry(Polygon,32636) not null,
    module varchar(256),
    existence boolean not null default false,
-   completness numeric(4,3) default null,
-   completness_lod1 numeric(4,3) default null,
-   completness_lod2 numeric(4,3) default null,
-   completness_lod3 numeric(4,3) default null,
-   completness_lod4 numeric(4,3) default null,
+   completeness numeric(4,3) default null,
+   completeness_lod1 numeric(4,3) default null,
+   completeness_lod2 numeric(4,3) default null,
+   completeness_lod3 numeric(4,3) default null,
+   completeness_lod4 numeric(4,3) default null,
    mesh numeric(4,3) default null,
    realistic_texture numeric(4,3) default null,
    texture_resolution numeric default null,
    ce90 numeric default null,
-   le90 numeric default null,
+   le90_2d numeric default null,
+   se90 numeric default null,
+   le90_3d numeric default null,
    measureDate date default null,
    measureTime time default null,
+   transience interval default null,
    constraint zones_pk primary key (id),
    constraint zones_parent_fk foreign key (parent_id)
 	references citydb.zones (id) match full
@@ -54,11 +57,11 @@ create table cityobject_dataquality (
    le90_2d numeric default null,
    se90 numeric default null,
    le90_3d numeric default null,
-   completness_lod0 numeric(4,3) default null,
-   completness_lod1 numeric(4,3) default null,
-   completness_lod2 numeric(4,3) default null,
-   completness_lod3 numeric(4,3) default null,
-   completness_lod4 numeric(4,3) default null,
+   completeness_lod0 numeric(4,3) default null,
+   completeness_lod1 numeric(4,3) default null,
+   completeness_lod2 numeric(4,3) default null,
+   completeness_lod3 numeric(4,3) default null,
+   completeness_lod4 numeric(4,3) default null,
    reliability numeric(4,3) default null,
    transience interval default null,
    measureDate date default null,
@@ -124,21 +127,21 @@ create table property_dataquality (
 );
 
 
-drop sequence  if exists citydb.building_completness_seq;
-create sequence citydb.building_completness_seq
+drop sequence  if exists citydb.building_completeness_seq;
+create sequence citydb.building_completeness_seq
     increment 1
     start 1
     minvalue 0
     maxvalue 2147483647
     cache 1;
 
-alter sequence citydb.building_completness_seq owner to postgres;
+alter sequence citydb.building_completeness_seq owner to postgres;
 
-drop table if exists building_completness;
-create table building_completness (
-   id integer NOT NULL DEFAULT nextval('building_completness_seq'::regclass),
+drop table if exists building_completeness;
+create table building_completeness (
+   id integer NOT NULL DEFAULT nextval('building_completeness_seq'::regclass),
    cityobject_id integer,
-   completness	numeric(4,3) default null,
+   completeness	numeric(4,3) default null,
    storey numeric(4,3) default null,
    indoor numeric(4,3) default null,
    texture numeric(4,3) default null,

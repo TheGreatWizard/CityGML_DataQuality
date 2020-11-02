@@ -47,7 +47,7 @@ xsi:schemaLocation="http://www.opengis.net/citygml/cityobjectgroup/2.0 http://sc
             <qlt:module>Buildings</qlt:module>
             <qlt:completeness>
                 <qlt:existence>true</qlt:existence>
-                <qlt:completness>0.9</qlt:completness>
+                <qlt:completeness>0.9</qlt:completeness>
                 <qlt:lod0>0</qlt:lod0>
                 <qlt:lod1>0</qlt:lod1>
                 <qlt:lod2>1</qlt:lod2>
@@ -55,6 +55,23 @@ xsi:schemaLocation="http://www.opengis.net/citygml/cityobjectgroup/2.0 http://sc
                 <qlt:lod4>0</qlt:lod4>
                 <qlt:mesh>0</qlt:mesh>
             </qlt:completeness>
+            <qlt:temporalReliability>
+                <qlt:measureDate>2020-11-02</qlt:measureDate>
+                <qlt:measureTime>16:06</qlt:measureTime>
+                <qlt:transience>112</qlt:transience>
+            </qlt:temporalReliability>
+            <qlt:positionalQuality>
+                <qlt:form1>
+                    <qlt:CE90>3.5</qlt:CE90>
+                    <qlt:LE90>1.5</qlt:LE90>
+                </qlt:form1>
+                  <qlt:form2>
+                    <qlt:SE90>4.2</qlt:SE90>
+                    <qlt:LE90>2.2</qlt:LE90>
+                </qlt:form2>
+            </qlt:positionalQuality>
+            <qlt:realistic_texture>0</qlt:realistic_texture>
+            <qlt:texture_resolution>0.15</qlt:texture_resolution>
         </qlt:zone>
     </cityObjectMember>
     <cityObjectMember>
